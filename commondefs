@@ -53,5 +53,5 @@ M3PP = m3pp
 LDFLAGS = $(LLDFLAGS) $(GLDFLAGS)
 LLDFLAGS = $(LLDLIBS) $(LLDOPTS) 
 
-TEXSTAMP = ./texstamp
+TEXSTAMP = ../make/texstamp
 LATEX = latex
