@@ -54,6 +54,6 @@ M3PP = m3pp
 LDFLAGS = $(LLDFLAGS) $(GLDFLAGS)
 LLDFLAGS = $(LLDLIBS) $(LLDOPTS) 
 
-TEXSTAMP = ../make/texstamp
+COMMONRULES = ../make/commonrules
 LATEX = TEXINPUTS=../tex-macros: latex
 PDFLATEX = TEXINPUTS=../tex-macros: pdflatex
