@@ -63,9 +63,6 @@ depend: .dependtime
 	    $(MAKE) $@; \
 	else \
 	    echo "==> No need to rebuild $@"; \
-	    if false && test -r $*.ind; then touch $*.ind; fi; \
-	    if false && test -r $*.bbl; then touch $*.bbl; fi; \
-	    touch $*.stamp; \
 	fi
 	@rm -f $*.auxprev
 
@@ -85,8 +82,6 @@ depend: .dependtime
 	    $(MAKE) $@; \
 	else \
 	    echo "==> No need to rebuild $@"; \
-	    if test -r $*.ind; then touch $*.ind; fi; \
-	    if test -r $*.bbl; then touch $*.bbl; fi; \
 	    touch $*.stamp; \
 	fi
 	@rm -f $*.auxprev

@@ -2,7 +2,7 @@
 # See the manual page for "commondefs" for more information.
 #
 
-MAKEDIR = ../../make
+MAKEDIR = ../make
 INCLDIR = $(ROOT)/usr/include
 TEXDIR = ../tex-macros
 
