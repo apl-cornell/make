@@ -1,6 +1,7 @@
-#!/usr/bin/perl
+#!/usr/bin/perl -i.bak
 undef $/;
 $text = <>;
+$text =~ s/^.*%!/%!/;
 $text =~ s/\r\n/\n/g;
 $text =~ s/ArialMT/Helvetica/g;
 $text =~ s/Arial-ItalicMT/Helvetica-Oblique/g;
