@@ -55,5 +55,6 @@ LDFLAGS = $(LLDFLAGS) $(GLDFLAGS)
 LLDFLAGS = $(LLDLIBS) $(LLDOPTS) 
 
 COMMONRULES = ../make/commonrules
-LATEX = TEXINPUTS=../tex-macros: latex
-PDFLATEX = TEXINPUTS=../tex-macros: pdflatex
+TEXINPUTS = .:../tex-macros:
+LATEX = TEXINPUTS=$(TEXINPUTS) latex
+PDFLATEX = TEXINPUTS=$(TEXINPUTS) pdflatex
