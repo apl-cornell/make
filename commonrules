@@ -53,19 +53,19 @@ depend: .dependtime
 	   else echo > $*.auxprev; \
 	fi
 	@echo "$(LATEX) $<"
-	@sh -c "$(LATEX) $< || (rm -f $*.aux; sleep 1; touch $*.tex; exit 1)"
+	@sh -c "$(LATEX) $< || (rm -f $*.aux; sleep 1; touch $*.stamp; exit 1)"
 	@-cmp -s $*.aux $*.auxprev; \
 	if test $$? = 1; \
 	then \
 	    sleep 1; \
 	    echo "==> Rebuilding $@"; \
-	    touch $*.tex; \
+	    touch $*.stamp; \
 	    $(MAKE) $@; \
 	else \
 	    echo "==> No need to rebuild $@"; \
-	    if [ -r $*.ind ]; then touch $*.ind; fi; \
-	    if [ -r $*.bbl ]; then touch $*.bbl; fi; \
-	    touch $@; \
+	    if false && test -r $*.ind; then touch $*.ind; fi; \
+	    if false && test -r $*.bbl; then touch $*.bbl; fi; \
+	    touch $*.stamp; \
 	fi
 	@rm -f $*.auxprev
 
@@ -75,19 +75,19 @@ depend: .dependtime
 	   else echo > $*.auxprev; \
 	fi
 	@echo "$(PDFLATEX) $<"
-	@sh -c "$(PDFLATEX) $< || (rm -f $*.aux; sleep 1; touch $*.tex; exit 1)"
+	@sh -c "$(PDFLATEX) $< || (rm -f $*.aux; sleep 1; touch $*.stamp; exit 1)"
 	@-cmp -s $*.aux $*.auxprev; \
 	if test $$? = 1; \
 	then \
 	    sleep 1; \
 	    echo "==> Rebuilding $@"; \
-	    touch $*.tex; \
+	    touch $*.stamp; \
 	    $(MAKE) $@; \
 	else \
 	    echo "==> No need to rebuild $@"; \
-	    if [ -r $*.ind ]; then touch $*.ind; fi; \
-	    if [ -r $*.bbl ]; then touch $*.bbl; fi; \
-	    touch $@; \
+	    if test -r $*.ind; then touch $*.ind; fi; \
+	    if test -r $*.bbl; then touch $*.bbl; fi; \
+	    touch $*.stamp; \
 	fi
 	@rm -f $*.auxprev
 

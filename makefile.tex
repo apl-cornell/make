@@ -35,8 +35,8 @@ BIBFILE = $(DOC).bib
 # Ignore this if you're not using bibtex. Change the $(DOC) part if your bib
 # file has a different name from your document
 
-$(DOC).dvi: $(TEXS) $(DOC).stamp $(FIGS)
-$(DOC).pdf: $(TEXS) $(DOC).stamp $(FIGS)
+$(DOC).dvi: $(TEXS) $(FIGS) $(DOC).stamp
+$(DOC).pdf: $(TEXS) $(FIGS) $(DOC).stamp
 #
 # To use bibtex, add these to dependency list:
 # $(DOC).bbl $(BIBFILE)
@@ -47,7 +47,7 @@ $(DOC).pdf: $(TEXS) $(DOC).stamp $(FIGS)
 # To use glossaries, add this to dependency list:
 # $(DOC).glo
 
-$(DOC).bbl: $(DOC).stamp $(BIBFILE)
+$(DOC).bbl: $(BIBFILE) $(DOC).stamp
 $(DOC).glo $(DOC).ind: $(DOC).stamp
 $(DOC).ps: $(DOC).dvi $(FIGS)
 #
@@ -55,4 +55,4 @@ $(DOC).ps: $(DOC).dvi $(FIGS)
 
 VPATH = ../tex-macros
 
-include ../make/commonrules
+include $(COMMONRULES)

@@ -3,6 +3,7 @@
 #
 
 INCLDIR = $(ROOT)/usr/include
+COMMONRULES = ../make/commonrules
 
 SOURCES = $(CFILES) $(C++FILES) $(YFILES) $(LFILES) $(AFILES)
 OBJECTS = $(CFILES:.c=.o) $(C++FILES:.C=.o)
