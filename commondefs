@@ -16,7 +16,7 @@ MKDEPC++FLAGS = $(C++DEFS) $(C++INCS)
 MKDEPCFLAGS = $(CDEFS) $(CINCS)
 
 .SUFFIXES: .C .ps .i .txt .h
-.SUFFIXES: .tex .dvi .ind .idx .bbl .aux .glo .aux .stamp .pdf
+.SUFFIXES: .tex .dvi .ind .idx .bbl .aux .glo .aux .stamp .pdf .eps
 
 GNUBIN = /usr/local
 
