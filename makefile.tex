@@ -1,0 +1,58 @@
+# This is a makefile template to be copied & modified. Copy it to
+# "Makefile" in your directory and do "chmod u+w Makefile". Last modified,
+# Tue Jun 13 15:53:18 EDT 1995              andru
+
+DOC = paper
+#
+# change this line to contain the name of the document without extension
+
+TARGETS = $(DOC).ps $(DOC).pdf
+#
+# TARGETS could be $(DOC).dvi instead, if there are no figures
+
+TEXS = $(DOC).tex *.tex *.sty
+#
+# Add any included TeX files to TEXS
+
+FIGS =
+#
+# List of postscript figures to be included
+
+include ../make/commondefs
+#
+# Remove the include above and uncomment the following line if you have
+# commondefs installed in the current directory.
+
+# include commondefs
+
+# Otherwise, set the environment variable COMMONDEFS to
+# /usr/local/public/include/make/commondefs unless you have some better idea.
+
+default: $(TARGETS)
+
+BIBFILE = $(DOC).bib
+#
+# Ignore this if you're not using bibtex. Change the $(DOC) part if your bib
+# file has a different name from your document
+
+$(DOC).dvi: $(TEXS) $(DOC).stamp $(FIGS)
+$(DOC).pdf: $(TEXS) $(DOC).stamp $(FIGS)
+#
+# To use bibtex, add these to dependency list:
+# $(DOC).bbl $(BIBFILE)
+# 
+# To use makeindex, add this to dependency list:
+# $(DOC).ind
+#
+# To use glossaries, add this to dependency list:
+# $(DOC).glo
+
+$(DOC).bbl: $(DOC).stamp $(BIBFILE)
+$(DOC).glo $(DOC).ind: $(DOC).stamp
+$(DOC).ps: $(DOC).dvi $(FIGS)
+#
+# These are standard dependencies. Shouldn't need to modify these.
+
+VPATH = ../tex-macros
+
+include ../make/commonrules

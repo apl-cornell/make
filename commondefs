@@ -14,7 +14,7 @@ MKDEPEND = makedepend
 MKDEPC++FLAGS = $(C++DEFS) $(C++INCS)
 MKDEPCFLAGS = $(CDEFS) $(CINCS)
 
-.SUFFIXES: .C .ps .i .txt .h .m .i3 .m3 .mo .ig .mg
+.SUFFIXES: .C .ps .i .txt .h
 .SUFFIXES: .tex .dvi .ind .idx .bbl .aux .glo .aux .stamp .pdf
 
 GNUBIN = /usr/local
