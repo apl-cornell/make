@@ -15,7 +15,7 @@ MKDEPC++FLAGS = $(C++DEFS) $(C++INCS)
 MKDEPCFLAGS = $(CDEFS) $(CINCS)
 
 .SUFFIXES: .C .ps .i .txt .h .m .i3 .m3 .mo .ig .mg
-.SUFFIXES: .tex .dvi .ind .idx .bbl .aux .glo .aux .stamp 
+.SUFFIXES: .tex .dvi .ind .idx .bbl .aux .glo .aux .stamp .pdf
 
 GNUBIN = /usr/local
 
@@ -54,4 +54,5 @@ LDFLAGS = $(LLDFLAGS) $(GLDFLAGS)
 LLDFLAGS = $(LLDLIBS) $(LLDOPTS) 
 
 TEXSTAMP = ../make/texstamp
-LATEX = latex
+LATEX = TEXINPUTS=../tex-macros: latex
+PDFLATEX = TEXINPUTS=../tex-macros: pdflatex

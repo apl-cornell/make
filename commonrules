@@ -43,25 +43,23 @@ depend: .dependtime
 
 # Rules for TeX files
 #
-# must add a dependency like
-#    foo.dvi: foo.stamp
-# to use this rule properly.
-#
 # The line that runs LATEX needs to run inside a subshell to turn off
 # "make"'s status checking. It blows away .aux because the .aux file
-# created is bad and also breaks bibtex. It touches .stamp to force a
+# created is bad and also breaks bibtex. It touches .tex to force a
 # rebuild.
 .tex.dvi:
-	$(TEXSTAMP) $< > $*.stampold
-	@echo "Running latex..."
-	@sh -c "$(LATEX) $< || (rm -f $*.aux; sleep 1; touch $*.stamp; exit 1)"
-	$(TEXSTAMP) $< > $*.stamp
-	@-cmp -s $*.stamp $*.stampold; \
-	if [ $$? = "1" ]; \
+	@if test -r "$*.aux"; \
+	   then cp $*.aux $*.auxprev; \
+	   else echo > $*.auxprev; \
+	fi
+	@echo "$(LATEX) $<"
+	@sh -c "$(LATEX) $< || (rm -f $*.aux; sleep 1; touch $*.tex; exit 1)"
+	@-cmp -s $*.aux $*.auxprev; \
+	if test $$? = 1; \
 	then \
 	    sleep 1; \
 	    echo "==> Rebuilding $@"; \
-	    touch $*.stamp; \
+	    touch $*.tex; \
 	    $(MAKE) $@; \
 	else \
 	    echo "==> No need to rebuild $@"; \
@@ -69,19 +67,21 @@ depend: .dependtime
 	    if [ -r $*.bbl ]; then touch $*.bbl; fi; \
 	    touch $@; \
 	fi
-	@rm -f $*.stampold
+	@rm -f $*.auxprev
 
 .tex.pdf:
-	$(TEXSTAMP) $< > $*.stampold
-	@echo "Running pdflatex..."
-	@sh -c "$(PDFLATEX) $< || (rm -f $*.aux; sleep 1; touch $*.stamp; exit 1)"
-	$(TEXSTAMP) $< > $*.stamp
-	@-cmp -s $*.stamp $*.stampold; \
-	if [ $$? = "1" ]; \
+	@if test -r "$*.aux"; \
+	   then cp $*.aux $*.auxprev; \
+	   else echo > $*.auxprev; \
+	fi
+	@echo "$(PDFLATEX) $<"
+	@sh -c "$(PDFLATEX) $< || (rm -f $*.aux; sleep 1; touch $*.tex; exit 1)"
+	@-cmp -s $*.aux $*.auxprev; \
+	if test $$? = 1; \
 	then \
 	    sleep 1; \
 	    echo "==> Rebuilding $@"; \
-	    touch $*.stamp; \
+	    touch $*.tex; \
 	    $(MAKE) $@; \
 	else \
 	    echo "==> No need to rebuild $@"; \
@@ -89,7 +89,7 @@ depend: .dependtime
 	    if [ -r $*.bbl ]; then touch $*.bbl; fi; \
 	    touch $@; \
 	fi
-	@rm -f $*.stampold
+	@rm -f $*.auxprev
 
 # must add dependencies like
 #    foo.ind: foo.stamp
@@ -105,13 +105,13 @@ depend: .dependtime
         fi
 
 # must add dependencies like
-#    foo.bbl: foo.stamp foo.bib
+#    foo.bbl: foo.bib
 #    foo.dvi: foo.bbl
 # to use this rule properly.
 .tex.bbl:
 	@if [ -r $*.aux ]; then echo bibtex $*; sh -c "bibtex $* || echo"; else echo; fi
 
-.tex.stamp:
+.tex.stamp: # backward compatibility
 	touch $@
 
 .dvi.ps:
