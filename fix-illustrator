@@ -1,0 +1,19 @@
+#!/usr/bin/perl
+undef $/;
+$text = <>;
+$text =~ s/\r\n/\n/g;
+$text =~ s/ArialMT/Helvetica/g;
+$text =~ s/Arial-ItalicMT/Helvetica-Oblique/g;
+$text =~ s/Arial-BoldMT/Helvetica-Bold/g;
+$text =~ s/Arial-BoldItalicMT/Helvetica-BoldOblique/g;
+$text =~ s/TimesNewRomanPSMT/Times-Roman/g;
+$text =~ s/TimesNewRomanPS-ItalicMT/Times-Italic/g;
+$text =~ s/TimesNewRomanPS-BoldMT/Times-Bold/g;
+$text =~ s/TimesNewRomanPS-BoldItalicMT/Times-BoldItalic/g;
+$text =~ s/CourierNewPSMT/Courier/g;
+$text =~ s/CourierNewPS-BoldMT/Courier-Bold/g;
+$text =~ s/CourierNewPS-ItalicMT/Courier-Oblique/g;
+$text =~ s/CourierNewPS-BoldItalicMT/Courier-BoldOblique/g;
+$text =~ s/\n%%EOF\n(.|\n)*/\n%%EOF\n/;
+
+print STDOUT $text;
