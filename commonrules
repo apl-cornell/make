@@ -104,7 +104,7 @@ depend: .dependtime
 #    foo.dvi: foo.bbl
 # to use this rule properly.
 .tex.bbl:
-	@if [ -r $*.aux ]; then echo bibtex $*; sh -c "bibtex $* || echo"; else echo; fi
+	@if [ -r $*.aux ]; then echo bibtex $*; sh -c "bibtex $(BIBOPTS) $* || echo"; else echo; fi
 
 .tex.stamp: # backward compatibility
 	touch $@
