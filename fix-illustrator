@@ -17,4 +17,4 @@ $text =~ s/CourierNewPS-ItalicMT/Courier-Oblique/g;
 $text =~ s/CourierNewPS-BoldItalicMT/Courier-BoldOblique/g;
 $text =~ s/\n%%EOF\n(.|\n)*/\n%%EOF\n/;
 
-print STDOUT $text;
+print $text;
