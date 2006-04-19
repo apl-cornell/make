@@ -15,8 +15,9 @@ GENERATED = .dependtime Makedepend Makedepend.bak
 RM = rm -f
 MKDEPFILE = Makedepend
 MKDEPEND = makedepend
-MKDEPC++FLAGS = $(C++DEFS) $(C++INCS)
-MKDEPCFLAGS = $(CDEFS) $(CINCS)
+MKDEPFLAGS = -Y
+MKDEPC++FLAGS = $(C++DEFS) $(C++INCS) $(MKDEPFLAGS)
+MKDEPCFLAGS = $(CDEFS) $(CINCS) $(MKDEPFLAGS)
 
 .SUFFIXES: .C .ps .i .txt .h
 .SUFFIXES: .tex .dvi .ind .idx .bbl .aux .glo .aux .stamp .pdf .eps

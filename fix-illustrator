@@ -1,20 +1,21 @@
 #!/usr/bin/perl -i.bak
 undef $/;
 $text = <>;
-$text =~ s/^.*%!/%!/;
-$text =~ s/\r\n/\n/g;
-$text =~ s/ArialMT/Helvetica/g;
-$text =~ s/Arial-ItalicMT/Helvetica-Oblique/g;
-$text =~ s/Arial-BoldMT/Helvetica-Bold/g;
-$text =~ s/Arial-BoldItalicMT/Helvetica-BoldOblique/g;
-$text =~ s/TimesNewRomanPSMT/Times-Roman/g;
-$text =~ s/TimesNewRomanPS-ItalicMT/Times-Italic/g;
-$text =~ s/TimesNewRomanPS-BoldMT/Times-Bold/g;
-$text =~ s/TimesNewRomanPS-BoldItalicMT/Times-BoldItalic/g;
-$text =~ s/CourierNewPSMT/Courier/g;
-$text =~ s/CourierNewPS-BoldMT/Courier-Bold/g;
-$text =~ s/CourierNewPS-ItalicMT/Courier-Oblique/g;
-$text =~ s/CourierNewPS-BoldItalicMT/Courier-BoldOblique/g;
-$text =~ s/\n%%EOF\n(.|\n)*/\n%%EOF\n/;
+$text =~ s/\A[^%]+%!/%!/s;
+$text =~ s/\r\n/\n/gs;
+$text =~ s/\r/\n/gs;
+$text =~ s/ArialMT/Helvetica/gs;
+$text =~ s/Arial-ItalicMT/Helvetica-Oblique/gs;
+$text =~ s/Arial-BoldMT/Helvetica-Bold/gs;
+$text =~ s/Arial-BoldItalicMT/Helvetica-BoldOblique/gs;
+$text =~ s/TimesNewRomanPSMT/Times-Roman/gs;
+$text =~ s/TimesNewRomanPS-ItalicMT/Times-Italic/gs;
+$text =~ s/TimesNewRomanPS-BoldMT/Times-Bold/gs;
+$text =~ s/TimesNewRomanPS-BoldItalicMT/Times-BoldItalic/gs;
+$text =~ s/CourierNewPSMT/Courier/gs;
+$text =~ s/CourierNewPS-BoldMT/Courier-Bold/gs;
+$text =~ s/CourierNewPS-ItalicMT/Courier-Oblique/gs;
+$text =~ s/CourierNewPS-BoldItalicMT/Courier-BoldOblique/gs;
+$text =~ s/\n%%EOF(.|\n)*\Z/\n%%EOF\n/s;
 
 print $text;
