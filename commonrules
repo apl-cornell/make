@@ -45,7 +45,7 @@ depend: .dependtime
 #
 # The line that runs LATEX needs to run inside a subshell to turn off
 # "make"'s status checking. It blows away .aux because the .aux file
-# created is bad and also breaks bibtex. It touches .tex to force a
+# created is bad and also breaks bibtex. It touches .stamp to force a
 # rebuild.
 .tex.dvi:
 	@if test -r "$*.aux"; \
@@ -82,7 +82,6 @@ depend: .dependtime
 	    $(MAKE) $@; \
 	else \
 	    echo "==> No need to rebuild $@"; \
-	    touch $*.stamp; \
 	fi
 	@rm -f $*.auxprev
 
