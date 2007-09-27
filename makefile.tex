@@ -17,15 +17,14 @@ FIGS =
 #
 # List of postscript figures to be included
 
-include ../make/commondefs
+MAKEDIR=../make
+
+include $(MAKEDIR)/commondefs
 #
 # Remove the include above and uncomment the following line if you have
 # commondefs installed in the current directory.
 
 # include commondefs
-
-# Otherwise, set the environment variable COMMONDEFS to
-# /usr/local/public/include/make/commondefs unless you have some better idea.
 
 default: $(TARGETS)
 
@@ -51,6 +50,14 @@ $(DOC).glo $(DOC).ind: $(DOC).stamp
 $(DOC).ps: $(DOC).dvi $(FIGS)
 #
 # These are standard dependencies. Shouldn't need to modify these.
+
+%.dvi: $(TEXS) $(FIGS) %.stamp %.bbl $(BIBFILE)
+%.pdf: $(TEXS) $(PDFFIGS) %.stamp %.bbl $(BIBFILE)
+%.bbl: $(BIBFILE) %.stamp
+%.glo %.ind: %.stamp
+%.ps: %.dvi $(FIGS)
+#
+## gmake rules that may be all that's needed
 
 VPATH = ../tex-macros
 
