@@ -111,7 +111,7 @@ depend: .dependtime
 .dvi.ps:
 	$(DVIPS) $(DVIPSOPTS) $< -o $@
 .eps.pdf:
-	epstopdf $<
+	epstopdf $(EPSTOPDFOPTS) $<
 
 #
 # Rules for C++ and .i files
