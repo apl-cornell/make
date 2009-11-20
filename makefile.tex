@@ -1,11 +1,12 @@
 # This is a makefile template to be copied & modified. Copy it to
 # "Makefile" in your directory and do "chmod u+w Makefile".
+# -- Andrew Myers
 
 DOC = paper
 #
 # change this line to contain the name of the document without extension
 
-TARGETS = $(DOC).ps $(DOC).pdf
+TARGETS = $(DOC).pdf
 #
 # TARGETS could be $(DOC).dvi instead, if there are no figures
 
@@ -50,14 +51,6 @@ $(DOC).glo $(DOC).ind: $(DOC).stamp
 $(DOC).ps: $(DOC).dvi $(FIGS)
 #
 # These are standard dependencies. Shouldn't need to modify these.
-
-%.dvi: $(TEXS) $(FIGS) %.stamp %.bbl $(BIBFILE)
-%.pdf: $(TEXS) $(PDFFIGS) %.stamp %.bbl $(BIBFILE)
-%.bbl: $(BIBFILE) %.stamp
-%.glo %.ind: %.stamp
-%.ps: %.dvi $(FIGS)
-#
-## gmake rules that may be all that's needed
 
 VPATH = ../tex-macros
 
