@@ -49,41 +49,41 @@ depend: .dependtime
 # rebuild.
 .tex.dvi:
 	@if test -r "$*.aux"; \
-	   then cp $*.aux $*.auxprev; \
-	   else echo > $*.auxprev; \
+	   then cp "$(BUILDD)$*.aux" "$(BUILDD)*.auxprev"; \
+	   else echo > "$(BUILDD)$*.auxprev"; \
 	fi
 	@echo "$(LATEX) $<"
-	@sh -c "$(LATEX) $< || (rm -f $*.aux; sleep 1; touch $*.stamp; exit 1)"
-	@-cmp -s $*.aux $*.auxprev; \
+	@sh -c "$(LATEX) $< || (rm -f $*.aux; sleep 1; touch "$(BUILDD)$*.stamp"; exit 1)"
+	@-cmp -s "$(BUILDD)$*.aux" "$(BUILDD)$*.auxprev"; \
 	if test $$? = 1; \
 	then \
 	    sleep 1; \
 	    echo "==> Rebuilding $@"; \
-	    touch $*.stamp; \
+	    touch "$(BUILDD)$*.stamp"; \
 	    $(MAKE) $@; \
 	else \
 	    echo "==> No need to rebuild $@"; \
 	fi
-	@rm -f $*.auxprev
+	@rm -f "$(BUILDD)$*.auxprev"
 
 .tex.pdf:
-	@if test -r "$*.aux"; \
-	   then cp $*.aux $*.auxprev; \
-	   else echo > $*.auxprev; \
+	@if test -r "$(BUILDD)$*.aux"; \
+	   then cp "$(BUILDD)$*.aux" "$(BUILDD)$*.auxprev"; \
+	   else echo > "$(BUILDD)$*.auxprev"; \
 	fi
 	@echo "$(PDFLATEX) $<"
-	@sh -c "$(PDFLATEX) $< || (rm -f $*.aux; sleep 1; touch $*.stamp; exit 1)"
-	@-cmp -s $*.aux $*.auxprev; \
+	@sh -c "$(PDFLATEX) $< || (rm -f $*.aux; sleep 1; touch \"$(BUILDD)$*.stamp\"; exit 1)"
+	@-cmp -s "$(BUILDD)$*.aux" "$(BUILDD)$*.auxprev"; \
 	if test $$? = 1; \
 	then \
 	    sleep 1; \
 	    echo "==> Rebuilding $@"; \
-	    touch $*.stamp; \
+	    touch "$(BUILDD)$*.stamp"; \
 	    $(MAKE) $@; \
 	else \
 	    echo "==> No need to rebuild $@"; \
 	fi
-	@rm -f $*.auxprev
+	@rm -f "$(BUILDD)$*.auxprev"
 
 # must add dependencies like
 #    foo.ind: foo.stamp

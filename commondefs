@@ -60,5 +60,7 @@ LLDFLAGS = $(LLDLIBS) $(LLDOPTS)
 SEP=:
 #SEP=\;         # for MikTeX+Cygwin
 TEXINPUTS = .$(SEP)$(TEXDIR)$(SEP)
-LATEX = TEXINPUTS=$(TEXINPUTS) latex
-PDFLATEX = TEXINPUTS=$(TEXINPUTS) pdflatex
+LATEX = TEXINPUTS="$(TEXINPUTS)" latex --output-directory='$(BUILD)'
+PDFLATEX = TEXINPUTS="$(TEXINPUTS)" pdflatex --output-directory='$(BUILD)'
+BUILD = .
+BUILDD =
