@@ -49,7 +49,7 @@ depend: .dependtime
 # rebuild.
 .tex.dvi:
 	@if test -r "$*.aux"; \
-	   then cp "$(BUILDD)$*.aux" "$(BUILDD)*.auxprev"; \
+	   then cp "$(BUILDD)$*.aux" "$(BUILDD)$*.auxprev"; \
 	   else echo > "$(BUILDD)$*.auxprev"; \
 	fi
 	@echo "$(LATEX) $<"
