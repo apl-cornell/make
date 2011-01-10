@@ -56,7 +56,7 @@ build_dir=${TEXI2DVI_BUILD_DIRECTORY:-.}
 # Instead, assign them an empty value.
 action=compile
 batch=false     # true for batch mode
-catcode_special=true
+catcode_special=false
 debug=false
 escape="\\"
 expand=         # t for expansion via makeinfo
