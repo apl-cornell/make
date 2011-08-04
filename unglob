@@ -21,6 +21,6 @@ foreach my $s (@a) {
     $s =~ s/#/\\#/g;
     $s =~ s/!/\\!/g;
     $s =~ s/\$/\\\$/g;
-    print $s, ' ';
+    print $s;
 }
-print "\n";
+print '\n'
