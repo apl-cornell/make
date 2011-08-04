@@ -11,6 +11,8 @@ if ($#ARGV == -1) {
     @a = @ARGV;
 }
 
+my @b;
+
 foreach my $s (@a) {
     $s =~ s/\\/\\\\/g;
     $s =~ s/\(/\\(/g;
@@ -21,6 +23,7 @@ foreach my $s (@a) {
     $s =~ s/#/\\#/g;
     $s =~ s/!/\\!/g;
     $s =~ s/\$/\\\$/g;
-    print $s;
+    push @b, $s;
 }
-print "\n"
+
+print join(' ', @b), "\n";
