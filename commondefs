@@ -68,3 +68,5 @@ BUILD = .
 # BUILDD should be equivalent to $(BUILD)/
 BUILDD =
 VPATH = $(BUILD)
+
+-include localdefs
