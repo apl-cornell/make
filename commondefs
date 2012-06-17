@@ -62,6 +62,7 @@ SEP=:
 TEXINPUTS = .$(SEP)$(TEXDIR)$(SEP)
 LATEX = TEXINPUTS='$(TEXINPUTS)' latex --output-directory='$(BUILD)'
 PDFLATEX = TEXINPUTS='$(TEXINPUTS)' pdflatex --output-directory='$(BUILD)'
+BIBTEX = bibtex
 
 # Directory for TeX's generated files.
 BUILD = .
