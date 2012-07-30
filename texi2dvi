@@ -56,7 +56,7 @@ build_dir=${TEXI2DVI_BUILD_DIRECTORY:-.}
 # Instead, assign them an empty value.
 action=compile
 batch=false     # true for batch mode
-catcode_special=false
+catcode_special=true
 debug=false
 escape="\\"
 expand=         # t for expansion via makeinfo
@@ -141,11 +141,13 @@ test -n "$TEX" && test -d "$TEX" && unset TEX
   }
   test_local
   test $foo = bar
-) || local () {
+) || eval '
+local () {
   case $1 in
     *=*) eval "$1";;
   esac
 }
+'
 
 
 # cd_orig
@@ -1710,7 +1712,7 @@ input_file_name_decode ()
 
   # If the COMMAND_LINE_FILENAME is not absolute (e.g., --debug.tex),
   # prepend `./' in order to avoid that the tools take it as an option.
-  echo "$command_line_filename" | $EGREP '^(/|[A-z]:/)' >&6 \
+  echo "$command_line_filename" | $EGREP '^(/|[A-Za-z]:/)' >&6 \
   || command_line_filename="./$command_line_filename"
 
   # See if the file exists.  If it doesn't we're in trouble since, even
