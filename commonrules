@@ -17,16 +17,16 @@ localclean:
 	$(RM) $(DIRT)
 
 clobber: localclean
-	@sub="$(SUBDIRS)"; \
-	for i in $$sub; do if test -n "$$i"; then \
-	      (cd $$i; make $@); \
+	@sub="$(SUBDIRS)";						      \
+	for i in $$sub; do if test -n "$$i"; then			      \
+	      (cd $$i; make $@);					      \
 	fi; done;
 	$(RM) $(TARGETS) $(GENERATED)
 
 install: default localinstall
-	@sub="$(SUBDIRS)"; \
-	for i in $$sub; do if test -n "$$i"; then \
-	      (cd $$i; make $@); \
+	@sub="$(SUBDIRS)";						      \
+	for i in $$sub; do if test -n "$$i"; then			      \
+	      (cd $$i; make $@);					      \
 	fi; done;
 
 incdepend: .dependtime
@@ -38,7 +38,7 @@ depend: .dependtime
 	touch $(MKDEPFILE)
 	$(MKDEPEND) $(MKDEPCFLAGS) -f $(MKDEPFILE) $(CFILES)
 	cat temp >> $(MKDEPFILE)
-	rm -f temp
+	$(RM) temp
 	touch $@
 
 # Rules for TeX files
@@ -48,54 +48,54 @@ depend: .dependtime
 # created is bad and also breaks bibtex. It touches .stamp to force a
 # rebuild.
 .tex.dvi:
-	@if test -r "$*.aux"; \
-	   then cp "$(BUILDD)$*.aux" "$(BUILDD)$*.auxprev"; \
-	   else echo > "$(BUILDD)$*.auxprev"; \
+	@if test -r "$*.aux";						      \
+	   then cp "$(BUILDD)$*.aux" "$(BUILDD)$*.auxprev";		      \
+	   else echo > "$(BUILDD)$*.auxprev";				      \
 	fi
 	@echo "$(LATEX) $<"
-	@sh -c "$(LATEX) $< || (rm -f $*.aux; sleep 1; touch "$(BUILDD)$*.stamp"; exit 1)"
-	@-cmp -s "$(BUILDD)$*.aux" "$(BUILDD)$*.auxprev"; \
-	if test $$? = 1; \
-	then \
-	    sleep 1; \
-	    echo "==> Rebuilding $@"; \
-	    touch "$(BUILDD)$*.stamp"; \
-	    $(MAKE) $@; \
-	else \
-	    echo "==> No need to rebuild $@"; \
+	@sh -c "$(LATEX) $< || ($(RM) $*.aux; sleep 1; touch \"$(BUILDD)$*.stamp\"; exit 1)"
+	@-cmp -s "$(BUILDD)$*.aux" "$(BUILDD)$*.auxprev";		      \
+	if test $$? = 1;						      \
+	then								      \
+	    sleep 1;							      \
+	    echo "==> Rebuilding $@";					      \
+	    touch "$(BUILDD)$*.stamp";					      \
+	    $(MAKE) $@;							      \
+	else								      \
+	    echo "==> No need to rebuild $@";				      \
 	fi
-	@rm -f "$(BUILDD)$*.auxprev"
+	@$(RM) "$(BUILDD)$*.auxprev"
 
 .tex.pdf:
-	@if test -r "$(BUILDD)$*.aux"; \
-	   then cp "$(BUILDD)$*.aux" "$(BUILDD)$*.auxprev"; \
-	   else echo > "$(BUILDD)$*.auxprev"; \
+	@if test -r "$(BUILDD)$*.aux";					      \
+	   then cp "$(BUILDD)$*.aux" "$(BUILDD)$*.auxprev";		      \
+	   else echo > "$(BUILDD)$*.auxprev";				      \
 	fi
 	@echo "$(PDFLATEX) $<"
-	@sh -c "$(PDFLATEX) $< || (rm -f $*.aux; sleep 1; touch \"$(BUILDD)$*.stamp\"; exit 1)"
-	@-cmp -s "$(BUILDD)$*.aux" "$(BUILDD)$*.auxprev"; \
-	if test $$? = 1; \
-	then \
-	    sleep 1; \
-	    echo "==> Rebuilding $@"; \
-	    touch "$(BUILDD)$*.stamp"; \
-	    $(MAKE) $@; \
-	else \
-	    echo "==> No need to rebuild $@"; \
+	@sh -c "$(PDFLATEX) $< || ($(RM) $*.aux; sleep 1; touch \"$(BUILDD)$*.stamp\"; exit 1)"
+	@-cmp -s "$(BUILDD)$*.aux" "$(BUILDD)$*.auxprev";		      \
+	if test $$? = 1;						      \
+	then								      \
+	    sleep 1;							      \
+	    echo "==> Rebuilding $@";					      \
+	    touch "$(BUILDD)$*.stamp";					      \
+	    $(MAKE) $@;							      \
+	else								      \
+	    echo "==> No need to rebuild $@";				      \
 	fi
-	@rm -f "$(BUILDD)$*.auxprev"
+	@$(RM) "$(BUILDD)$*.auxprev"
 
 # must add dependencies like
 #    foo.ind: foo.stamp
 #    foo.dvi: foo.ind
 # to use this rule properly.
 .tex.ind:
-	@if [ -f $*.idx ]; then \
-	   echo makeindex $*.idx; \
-	   makeindex $*.idx; \
-	else \
-	   echo touch $@; \
-	   touch $@; \
+	@if [ -f $*.idx ]; then						      \
+	   echo makeindex $*.idx;					      \
+	   makeindex $*.idx;						      \
+	else								      \
+	   echo touch $@;						      \
+	   touch $@;							      \
         fi
 
 # must add dependencies like
