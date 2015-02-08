@@ -58,7 +58,7 @@ LDFLAGS = $(LLDFLAGS) $(GLDFLAGS)
 LLDFLAGS = $(LLDLIBS) $(LLDOPTS) 
 
 SEP=:
-#SEP=\;         # for MikTeX+Cygwin
+#SEP=\;         # for MikTeX+Cygwin, can put into localdefs to override
 TEXINPUTS = .$(SEP)$(TEXDIR)$(SEP)
 LATEX = TEXINPUTS='$(TEXINPUTS)' latex --output-directory='$(BUILD)'
 PDFLATEX = TEXINPUTS='$(TEXINPUTS)' pdflatex --output-directory='$(BUILD)'

@@ -60,7 +60,7 @@ depend: .dependtime
 	    sleep 1;							      \
 	    echo "==> Rebuilding $@";					      \
 	    touch "$(BUILDD)$*.stamp";					      \
-	    $(MAKE) $@;							      \
+	    $(MAKE) $(MAKEFLAGS) $@;							      \
 	else								      \
 	    echo "==> No need to rebuild $@";				      \
 	fi
@@ -79,7 +79,7 @@ depend: .dependtime
 	    sleep 1;							      \
 	    echo "==> Rebuilding $@";					      \
 	    touch "$(BUILDD)$*.stamp";					      \
-	    $(MAKE) $@;							      \
+	    $(MAKE) $(MAKEFLAGS) $@;							      \
 	else								      \
 	    echo "==> No need to rebuild $@";				      \
 	fi
