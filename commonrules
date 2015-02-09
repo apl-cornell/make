@@ -145,4 +145,5 @@ final:
 	@DOC=final MAKEFLAGS=e $(MAKE)
 finaldraft:
 	@DOC=finaldraft MAKEFLAGS=e $(MAKE)
-
+blindtr:
+	@DOC=blindtr MAKEFLAGS=e $(MAKE)
