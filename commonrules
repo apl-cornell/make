@@ -127,3 +127,23 @@ depend: .dependtime
 	$(C++F) -c $<
 
 # include $(M3SU)    # old Modula-3 rules
+
+# Paper versions
+markup:
+	@DOC=markup MAKEFLAGS=e $(MAKE)
+draft:
+	@DOC=draft MAKEFLAGS=e $(MAKE)
+tr:
+	@DOC=tr MAKEFLAGS=e $(MAKE)
+trdraft:
+	@DOC=trdraft MAKEFLAGS=e $(MAKE)
+local:
+	@DOC=local MAKEFLAGS=e $(MAKE)
+submission:
+	@DOC=submission MAKEFLAGS=e $(MAKE)
+final:
+	@DOC=final MAKEFLAGS=e $(MAKE)
+finaldraft:
+	@DOC=finaldraft MAKEFLAGS=e $(MAKE)
+blindtr:
+	@DOC=blindtr MAKEFLAGS=e $(MAKE)
