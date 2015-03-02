@@ -147,3 +147,5 @@ finaldraft:
 	@DOC=finaldraft MAKEFLAGS=e $(MAKE)
 blindtr:
 	@DOC=blindtr MAKEFLAGS=e $(MAKE)
+web:
+	@DOC=web MAKEFLAGS=e $(MAKE)
