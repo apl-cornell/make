@@ -9,7 +9,7 @@ COMMONRULES = $(MAKEDIR)/commonrules
 
 SOURCES = $(CFILES) $(C++FILES) $(YFILES) $(LFILES) $(AFILES)
 OBJECTS = $(CFILES:.c=.o) $(C++FILES:.C=.o)
-DIRT = *.o core *.aux *.dvi *.log *.stamp *.i *.bbl *.[ib]lg $(LDIRT)
+DIRT = *.o core *.aux* *.dvi *.log *.stamp *.i *.bbl *.out *.upa *.upb *.[ib]lg $(LDIRT)
 GENERATED = .dependtime Makedepend Makedepend.bak
 RM = rm -f
 MKDEPFILE = Makedepend
@@ -61,7 +61,9 @@ SEP=:
 #SEP=\;         # for MikTeX+Cygwin # Deprecated: define this in $(MAKEDIR)/localdefs
 TEXINPUTS = .$(SEP)$(TEXDIR)$(SEP)
 LATEX = TEXINPUTS='$(TEXINPUTS)' latex --output-directory='$(BUILD)'
-PDFLATEX = TEXINPUTS='$(TEXINPUTS)' pdflatex --output-directory='$(BUILD)'
+PDFLATEX = TEXINPUTS='$(TEXINPUTS)' $(PDFLATEXEXEC) $(PDFLATEXFLAGS)
+PDFLATEXEXEC = pdflatex
+PDFFLAGS = --output-directory='$(BUILD)' $(LPDFLATEXFLAGS)
 BIBTEX = bibtex
 
 # Directory for TeX's generated files.
