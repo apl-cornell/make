@@ -18,7 +18,8 @@ FIGS =
 #
 # List of postscript figures to be included
 
-MAKEDIR=../make
+PAPERSROOT=..
+MAKEDIR=$(PAPERSROOT)/make
 
 include $(MAKEDIR)/commondefs
 #
@@ -28,6 +29,7 @@ include $(MAKEDIR)/commondefs
 default: $(TARGETS)
 
 BIBFILE = $(DOC).bib
+# BIBFILE = $(PAPERSROOT)/bibtex/master.bib
 #
 # Ignore this if you're not using bibtex. Change the $(DOC) part if your bib
 # file has a different name from your document
@@ -50,6 +52,6 @@ $(DOC).ps: $(DOC).dvi $(FIGS)
 #
 # These are standard dependencies. Shouldn't need to modify these.
 
-VPATH = ../tex-macros
+VPATH = $(PAPERSROOT)/tex-macros
 
 include $(COMMONRULES)
