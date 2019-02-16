@@ -155,3 +155,7 @@ blindtr:
 	@DOC=blindtr MAKEFLAGS=e $(MAKE)
 web:
 	@DOC=web MAKEFLAGS=e $(MAKE)
+arxiv:
+	@DOC=arxiv MAKEFLAGS=e $(MAKE)
+arxiv-expanded.tex: arxiv
+	latexpand -o arxiv-expanded.tex arxiv.tex
