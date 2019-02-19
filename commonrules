@@ -57,9 +57,12 @@ depend: .dependtime
 	@-cmp -s "$(BUILDD)$*.aux" "$(BUILDD)$*.auxprev";		      \
 	if test $$? = 1;						      \
 	then								      \
-	    sleep 1;							      \
 	    echo "==> Rebuilding $@";					      \
-	    touch "$(BUILDD)$*.stamp";					      \
+	    touch "$(BUILDD)$*.stamp";			                      \
+            while [ ! $(BUILDD)$*.stamp -nt $< ]; do                          \
+              sleep 0.3;                                                      \
+	      touch "$(BUILDD)$*.stamp";			              \
+            done;                                                             \
 	    $(MAKE) $@;							      \
 	else								      \
 	    echo "==> No need to rebuild $@";				      \
@@ -79,7 +82,7 @@ depend: .dependtime
 	    echo "==> Rebuilding $@";					      \
 	    touch "$(BUILDD)$*.stamp";			                      \
             while [ ! $(BUILDD)$*.stamp -nt $< ]; do                          \
-              sleep 1;                                                        \
+              sleep 0.3;                                                      \
 	      touch "$(BUILDD)$*.stamp";			              \
             done;                                                             \
 	    $(MAKE) $@;							      \
