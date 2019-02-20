@@ -59,8 +59,8 @@ depend: .dependtime
 	then								      \
 	    echo "==> Rebuilding $@";					      \
 	    touch "$(BUILDD)$*.stamp";			                      \
-            while [ ! $(BUILDD)$*.stamp -nt $< ]; do                          \
-              sleep 0.3;                                                      \
+            while [ ! $(BUILDD)$*.stamp -nt $@ ]; do                          \
+              sleep 0.2;                                                      \
 	      touch "$(BUILDD)$*.stamp";			              \
             done;                                                             \
 	    $(MAKE) $@;							      \
@@ -81,8 +81,8 @@ depend: .dependtime
 	then								      \
 	    echo "==> Rebuilding $@";					      \
 	    touch "$(BUILDD)$*.stamp";			                      \
-            while [ ! $(BUILDD)$*.stamp -nt $< ]; do                          \
-              sleep 0.3;                                                      \
+            while [ ! $(BUILDD)$*.stamp -nt $@ ]; do                          \
+              sleep 0.2;                                                      \
 	      touch "$(BUILDD)$*.stamp";			              \
             done;                                                             \
 	    $(MAKE) $@;							      \
