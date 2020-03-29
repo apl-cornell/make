@@ -162,3 +162,5 @@ arxiv:
 	@DOC=arxiv MAKEFLAGS=e SHELL=/bin/sh $(MAKE)
 arxiv-expanded.tex: arxiv
 	latexpand -o arxiv-expanded.tex arxiv.tex
+
+.PHONY: markup draft tr trdraft local submission final finaldraft blindtr web arxiv
