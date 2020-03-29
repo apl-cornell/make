@@ -139,26 +139,26 @@ depend: .dependtime
 
 # Paper versions
 markup:
-	@DOC=markup MAKEFLAGS=e $(MAKE)
+	@DOC=markup MAKEFLAGS=e SHELL=/bin/sh $(MAKE)
 draft:
-	@DOC=draft MAKEFLAGS=e $(MAKE)
+	@DOC=draft MAKEFLAGS=e SHELL=/bin/sh $(MAKE)
 tr:
-	@DOC=tr MAKEFLAGS=e $(MAKE)
+	@DOC=tr MAKEFLAGS=e SHELL=/bin/sh $(MAKE)
 trdraft:
-	@DOC=trdraft MAKEFLAGS=e $(MAKE)
+	@DOC=trdraft MAKEFLAGS=e SHELL=/bin/sh $(MAKE)
 local:
-	@DOC=local MAKEFLAGS=e $(MAKE)
+	@DOC=local MAKEFLAGS=e SHELL=/bin/sh $(MAKE)
 submission:
-	@DOC=submission MAKEFLAGS=e $(MAKE)
+	@DOC=submission MAKEFLAGS=e SHELL=/bin/sh $(MAKE)
 final:
-	@DOC=final MAKEFLAGS=e $(MAKE)
+	@DOC=final MAKEFLAGS=e SHELL=/bin/sh $(MAKE)
 finaldraft:
-	@DOC=finaldraft MAKEFLAGS=e $(MAKE)
+	@DOC=finaldraft MAKEFLAGS=e SHELL=/bin/sh $(MAKE)
 blindtr:
-	@DOC=blindtr MAKEFLAGS=e $(MAKE)
+	@DOC=blindtr MAKEFLAGS=e SHELL=/bin/sh $(MAKE)
 web:
-	@DOC=web MAKEFLAGS=e $(MAKE)
+	@DOC=web MAKEFLAGS=e SHELL=/bin/sh $(MAKE)
 arxiv:
-	@DOC=arxiv MAKEFLAGS=e $(MAKE)
+	@DOC=arxiv MAKEFLAGS=e SHELL=/bin/sh $(MAKE)
 arxiv-expanded.tex: arxiv
 	latexpand -o arxiv-expanded.tex arxiv.tex
