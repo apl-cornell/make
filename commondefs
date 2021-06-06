@@ -4,14 +4,19 @@
 
 SHELL = /bin/sh
 INCLDIR = $(ROOT)/usr/include
-PAPERSROOT ?= ..
-TEXDIR = $(PAPERSROOT)/tex-macros
 
+PAPERSROOT ?= .
+TEXDIR ?= $(PAPERSROOT)/tex-macros
+MAKEDIR ?= $(PAPERSROOT)/make
 COMMONRULES = $(MAKEDIR)/commonrules
+
+PAPERVERSIONS = markup draft tr trdraft local submission final finaldraft blindtr web arxiv
 
 SOURCES = $(CFILES) $(C++FILES) $(YFILES) $(LFILES) $(AFILES)
 OBJECTS = $(CFILES:.c=.o) $(C++FILES:.C=.o)
-DIRT = *.o core *.aux* *.dvi *.log *.stamp *.i *.bbl *.out *.upa *.upb *.[ib]lg $(LDIRT)
+DIRT = *.o core *.aux* *.dvi *.log *.stamp *.i *.bbl *.out \
+       *.fls *.synctex.gz *.cut *.upa *.upb *.fdb_latexmk \
+       *.[ib]lg arxiv-expanded.tex $(LDIRT)
 GENERATED = .dependtime Makedepend Makedepend.bak
 RM = rm -f
 MKDEPFILE = Makedepend
@@ -61,7 +66,7 @@ LLDFLAGS = $(LLDLIBS) $(LLDOPTS)
 
 SEP=:
 #SEP=\;         # for MikTeX+Cygwin # Deprecated: define this in $(MAKEDIR)/localdefs
-TEXINPUTS = .$(SEP)$(TEXDIR)$(SEP)
+TEXINPUTS = $(TEXDIR)$(SEP)
 LATEX = TEXINPUTS='$(TEXINPUTS)' $(LATEXEXEC) $(LATEXFLAGS)
 PDFLATEX = TEXINPUTS='$(TEXINPUTS)' $(PDFLATEXEXEC) $(PDFLATEXFLAGS)
 LATEXEXEC = latex
