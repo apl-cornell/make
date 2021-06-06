@@ -7,7 +7,7 @@ subdirs:
 	      (cd $$i; make); \
 	fi; done;
 
-clean:  localclean
+clean: localclean
 	@sub="$(SUBDIRS)"; \
 	for i in $$sub; do if test -n "$$i"; then \
 	      (cd $$i; make $@); \
@@ -138,29 +138,9 @@ depend: .dependtime
 # include $(M3SU)    # old Modula-3 rules
 
 # Paper versions
-markup:
-	@$(MAKE) SHELL=$(BINSH) DOC=markup
-draft:
-	@$(MAKE) SHELL=$(BINSH) DOC=draft
-tr:
-	@$(MAKE) SHELL=$(BINSH) DOC=tr
-trdraft:
-	@$(MAKE) SHELL=$(BINSH) DOC=trdraft
-local:
-	@$(MAKE) SHELL=$(BINSH) DOC=local
-submission:
-	@$(MAKE) SHELL=$(BINSH) DOC=submission
-final:
-	@$(MAKE) SHELL=$(BINSH) DOC=final
-finaldraft:
-	@$(MAKE) SHELL=$(BINSH) DOC=finaldraft
-blindtr:
-	@$(MAKE) SHELL=$(BINSH) DOC=blindtr
-web:
-	@$(MAKE) SHELL=$(BINSH) DOC=web
-arxiv:
-	@$(MAKE) SHELL=$(BINSH) DOC=arxiv
+$(PAPERVERSIONS):
+	@$(MAKE) SHELL=$(BINSH) DOC=$@
 arxiv-expanded.tex: arxiv
 	latexpand -o arxiv-expanded.tex arxiv.tex
 
-.PHONY: markup draft tr trdraft local submission final finaldraft blindtr web arxiv
+.PHONY: $(PAPERVERSIONS)
