@@ -7,7 +7,7 @@ INCLDIR = $(ROOT)/usr/include
 
 PAPERSROOT ?= .
 TEXDIR ?= $(PAPERSROOT)/tex-macros
-MAKEDIR ?= $(PAPERSROOT)/make
+MAKEDIR := $(dir $(lastword $(MAKEFILE_LIST)))
 COMMONRULES = $(MAKEDIR)/commonrules
 
 PAPERVERSIONS = markup draft tr trdraft local submission final finaldraft blindtr web arxiv
