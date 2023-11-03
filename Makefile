@@ -2,7 +2,7 @@
 # "Makefile" in your directory and do "chmod u+w Makefile".
 # -- Andrew Myers
 
-DOC = paper
+DOC = draft
 #
 # change this line to contain the name of the document without extension
 
@@ -10,7 +10,7 @@ TARGETS = $(DOC).pdf
 #
 # TARGETS could be $(DOC).dvi instead, if there are no figures
 
-TEXS = $(DOC).tex *.tex *.sty
+TEXS = $(DOC).tex $(wildcard *.tex *.sty)
 #
 # Add any included TeX files to TEXS
 
@@ -22,8 +22,7 @@ include make/commondefs
 
 default: $(TARGETS)
 
-BIBFILE = $(DOC).bib
-# BIBFILE = $(PAPERSROOT)/bibtex/master.bib
+BIBFILE = bibtex/pm-master.bib
 #
 # Ignore this if you're not using bibtex. Change the $(DOC) part if your bib
 # file has a different name from your document
@@ -44,5 +43,12 @@ $(DOC).ind $(DOC).glo: $(DOC).stamp
 $(DOC).ps: $(DOC).dvi $(FIGS)
 #
 # These are standard dependencies. Shouldn't need to modify these.
+
+$(DOC).tex: paper.tex Makefile
+	@printf '\\def\\paperversion{${DOC}}\n\\input{paper}' > $(DOC).tmp
+	@if test -r $(DOC).tex && cmp -s $(DOC).tmp $(DOC).tex;   	      \
+	    then echo '(No change to $(DOC).tex)'; rm $(DOC).tmp; 	      \
+	    else echo '(Rebuilt $(DOC).tmp)'; mv $(DOC).tmp $(DOC).tex;       \
+	fi
 
 include $(COMMONRULES)
