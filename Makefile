@@ -50,5 +50,15 @@ $(DOC).tex: paper.tex Makefile
 	    then echo '(No change to $(DOC).tex)'; rm $(DOC).tmp; 	      \
 	    else echo '(Rebuilt $(DOC).tmp)'; mv $(DOC).tmp $(DOC).tex;       \
 	fi
+	@$(MAKE) $(MAKEFLAGS) depend
+
+sinclude .depend.$(DOC)
+
+.PHONY: depend
+depend: $(DOC).pdf
+	@perl compute_deps.pl $(DOC) >> .depend.$(DOC)
+	@/bin/echo "Dependencies recomputed for $(DOC)."
+
+LDIRT = .depend.$(DOC)
 
 include $(COMMONRULES)
