@@ -22,6 +22,7 @@ foreach my $filename (@ARGV) {
         my $cmd = shift @a;
         my $file = shift @a;
         chomp $file;
+        $file =~ s/^\.\///;
         if ($cmd eq 'INPUT') {
             $inputs{$file} = 1
         } elsif ($cmd eq 'OUTPUT') {
