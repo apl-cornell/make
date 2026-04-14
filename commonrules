@@ -4,13 +4,13 @@
 subdirs:
 	@sub="$(SUBDIRS)"; \
 	for i in $$sub; do if test -n "$$i"; then \
-	      (cd $$i; make); \
+	      (cd $$i; $(MAKE) $(MAKEFLAGS)); \
 	fi; done;
 
 clean: localclean
 	@sub="$(SUBDIRS)"; \
 	for i in $$sub; do if test -n "$$i"; then \
-	      (cd $$i; make $@); \
+	      (cd $$i; $(MAKE) $(MAKEFLAGS) $@); \
 	fi; done;
 
 localclean:
@@ -19,7 +19,7 @@ localclean:
 clobber: localclean
 	@sub="$(SUBDIRS)";						      \
 	for i in $$sub; do if test -n "$$i"; then			      \
-	      (cd $$i; make $@);					      \
+	      (cd $$i; $(MAKE) $(MAKEFLAGS) $@);			      \
 	fi; done;
 	$(RM) $(TARGETS) $(GENERATED)
 
