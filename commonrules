@@ -4,13 +4,13 @@
 subdirs:
 	@sub="$(SUBDIRS)"; \
 	for i in $$sub; do if test -n "$$i"; then \
-	      (cd $$i; $(MAKE) $(MAKEFLAGS)); \
+	      (cd $$i; $(MAKE) -$(MAKEFLAGS)); \
 	fi; done;
 
 clean: localclean
 	@sub="$(SUBDIRS)"; \
 	for i in $$sub; do if test -n "$$i"; then \
-	      (cd $$i; $(MAKE) $(MAKEFLAGS) $@); \
+	      (cd $$i; $(MAKE) -$(MAKEFLAGS) $@); \
 	fi; done;
 
 localclean:
@@ -19,7 +19,7 @@ localclean:
 clobber: localclean
 	@sub="$(SUBDIRS)";						      \
 	for i in $$sub; do if test -n "$$i"; then			      \
-	      (cd $$i; $(MAKE) $(MAKEFLAGS) $@);			      \
+	      (cd $$i; $(MAKE) -$(MAKEFLAGS) $@);			      \
 	fi; done;
 	$(RM) $(TARGETS) $(GENERATED)
 
@@ -63,7 +63,8 @@ depend: .dependtime
               sleep 0.2;                                                      \
 	      touch "$(BUILDD)$*.stamp";			              \
             done;                                                             \
-	    $(MAKE) $@;							      \
+	    echo $(MAKE) -$(MAKEFLAGS) $@;			  	      \
+	    $(MAKE) -$(MAKEFLAGS) $@;					      \
 	else								      \
 	    echo "==> No need to rebuild $@";				      \
 	fi
@@ -85,7 +86,8 @@ depend: .dependtime
               sleep 0.2;                                                      \
 	      touch "$(BUILDD)$*.stamp";			              \
             done;                                                             \
-	    $(MAKE) $@;							      \
+	    echo $(MAKE) -$(MAKEFLAGS) $@;			  	      \
+	    $(MAKE) -$(MAKEFLAGS) $@;					      \
 	else								      \
 	    echo "==> No need to rebuild $@";				      \
 	fi
